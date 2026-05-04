@@ -23,7 +23,12 @@ def main():
         cnickel = tk.Tk()
         cnickel.title("🎰 Caça Nickel")
         cnickel.geometry("720x400")
-        cnickel.resizable(True, True)
+        cnickel.resizable(False, False)
+
+        titulo = tk.Label(janela,
+                          text="🎰 Caça Nickel",
+                          font=("Arial", 16, "bold"))
+        titulo.pack(pady=10)
 
         global saldo
         if saldo < custo_giro:
@@ -46,6 +51,13 @@ def main():
             resultado_label.config(text="😥 Tente novamente...", fg="black")
         
         saldo_label.config(text=f"Saldo: R$ {saldo: .2f}")
+
+        frame_slots = tk.Frame(janela)
+        frame_slots.pack(pady=10)
+
+        slot1 = tk.Label(frame_slots,
+                         text="❓",
+                         font=("Arial", 30))
 
 
 
