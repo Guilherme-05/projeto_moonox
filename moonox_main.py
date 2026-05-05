@@ -130,8 +130,6 @@ def main():
 
         saldo_label.config(text=f"Saldo: R$ {saldo:.2f}")
 
-
-
     btn = ttk.Button(root,
         text = "Janela",
         command = janela_nova)
