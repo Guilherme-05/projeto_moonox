@@ -57,7 +57,7 @@ def main():
     def futuro():
         desen = tk.Tk()
         desen.title("Moonox - Projeto") # Título da Janela.
-        desen.geometry("720x400") # Tamanho da Janela.
+        desen.geometry("350x250") # Tamanho da Janela.
         desen.resizable(False, False) # Redimensionar a Janela livremente.
 
         label = ttk.Label(desen,
@@ -75,6 +75,12 @@ def main():
               padx=30)
 
     def nickel():
+
+        global saldo
+        if saldo < custo_giro:
+            resultado_label.config(text="Saldo insuficiente!", fg="red")
+            return
+        
         cnickel = tk.Tk()
         cnickel.title("🎰 Caça Nickel")
         cnickel.geometry("720x400")
@@ -84,11 +90,6 @@ def main():
                           text="🎰 Caça Nickel",
                           font=("Arial", 16, "bold"))
         titulo.pack(pady=10)
-
-        global saldo
-        if saldo < custo_giro:
-            resultado_label.config(text="Saldo insuficiente!", fg="red")
-            return
         
         saldo -= custo_giro
 
@@ -111,16 +112,16 @@ def main():
         frame_slots.pack(pady=10)
 
         slot1 = tk.Label(frame_slots,
-                         text="❓",
-                         font=("Arial", 30))
+            text="❓",
+            font=("Arial", 30))
         
         slot2 = tk.Label(frame_slots,
-                         text="❓",
-                         font=("Arial", 30))
+            text="❓",
+            font=("Arial", 30))
         
         slot3 = tk.Label(frame_slots,
-                         text="❓",
-                         font=("Arial", 30))
+            text="❓",
+            font=("Arial", 30))
 
 
 
