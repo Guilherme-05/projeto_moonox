@@ -9,15 +9,70 @@ custo_giro = 2
 
 def main():
     root = tk.Tk()
-    root.title("Moonox - Projeto") # Título da Janela.
+    root.title("Moonox - Escolha sua Aba") # Título da Janela.
     root.geometry("720x400") # Tamanho da Janela.
-    root.resizable(True, True) # Redimensionar a Janela livremente.
+    root.resizable(False, False) # Redimensionar a Janela livremente.
 
     label = ttk.Label(root,
-        text="Janela Principal",
+        text="Escolha uma Opção",
         font=("TkDefaultFont", 20))
     
     label.pack(expand=True)
+
+    def janela():
+        def mostrar_texto():
+            texto = entrada.get()
+            label_resultado.config(text=texto)
+            entrada.delete(0, tk.END)  # limpa a barra
+
+        aba = tk.Tk()
+        aba.title("Moonox - Nova Janela")
+        aba.geometry("720x400")
+        aba.resizable(False, False)
+
+        # Configurar grid (estrutura da tela)
+        aba.grid_rowconfigure(0, weight=1)
+        aba.grid_rowconfigure(1, weight=1)
+        aba.grid_rowconfigure(2, weight=1)
+
+        aba.grid_columnconfigure(0, weight=1)
+        aba.grid_columnconfigure(1, weight=1)
+        aba.grid_columnconfigure(2, weight=1)
+
+        # 🔝 Texto no topo (centro)
+        label_resultado = tk.Label(aba, text="", font=("Arial", 14))
+        label_resultado.grid(row=0, column=1)
+
+        # 🟡 Campo de entrada no meio
+        entrada = tk.Entry(aba, width=40, font=("Arial", 14))
+        entrada.grid(row=1, column=1)
+
+        # 🔽 Botões embaixo
+        botao = ttk.Button(aba, text="Mostrar", command=mostrar_texto)
+        botao.grid(row=2, column=0, sticky="w", padx=30, pady=20)
+
+        btn = ttk.Button(aba, text="Sair", command=aba.destroy)
+        btn.grid(row=2, column=2, sticky="e", padx=30, pady=20)
+
+    def futuro():
+        desen = tk.Tk()
+        desen.title("Moonox - Projeto") # Título da Janela.
+        desen.geometry("720x400") # Tamanho da Janela.
+        desen.resizable(False, False) # Redimensionar a Janela livremente.
+
+        label = ttk.Label(desen,
+            text="Em Desenvolvimento!",
+            font=("TkDefaultFont", 20))
+    
+        label.pack(expand=True)
+
+        btn = ttk.Button(desen,
+            text = "Sair",
+            command = desen.destroy)
+    
+        btn.pack(side="left",
+              pady=15,
+              padx=30)
 
     def nickel():
         cnickel = tk.Tk()
@@ -25,7 +80,7 @@ def main():
         cnickel.geometry("720x400")
         cnickel.resizable(False, False)
 
-        titulo = tk.Label(janela,
+        titulo = tk.Label(cnickel,
                           text="🎰 Caça Nickel",
                           font=("Arial", 16, "bold"))
         titulo.pack(pady=10)
@@ -40,8 +95,8 @@ def main():
         resultado = [random.choice(simbolos) for _ in range(3)]
 
         slot1.config(text=resultado[0])
-        slot1.config(text=resultado[1])
-        slot1.config(text=resultado[2])
+        slot2.config(text=resultado[1])
+        slot3.config(text=resultado[2])
 
         if resultado[0] == resultado[1] == resultado[2]:
             premio = 20
@@ -58,24 +113,56 @@ def main():
         slot1 = tk.Label(frame_slots,
                          text="❓",
                          font=("Arial", 30))
+        
+        slot2 = tk.Label(frame_slots,
+                         text="❓",
+                         font=("Arial", 30))
+        
+        slot3 = tk.Label(frame_slots,
+                         text="❓",
+                         font=("Arial", 30))
 
 
 
     btn = ttk.Button(root,
-        text = "Open",
-        command = nickel)
+        text = "Janela",
+        command = janela)
     
     btn.pack(side="left",
              pady=15,
-             padx=25)
+             padx=40)
     
     btn2 = ttk.Button(root,
-        text = "Leave",
-        command = root.destroy)
+        text = "Nickel",
+        command = nickel)
     
     btn2.pack(side="left",
+             pady=15,
+             padx=30)
+    
+    btn3 = ttk.Button(root,
+        text = "Futuro",
+        command = futuro)
+    
+    btn3.pack(side="left",
+             pady=15,
+             padx=30)
+    
+    btn4 = ttk.Button(root,
+        text = "Futuro",
+        command = futuro)
+    
+    btn4.pack(side="left",
               pady=15,
-              padx=10)
+              padx=30)
+    
+    btn5 = ttk.Button(root,
+        text = "Sair",
+        command = root.destroy)
+    
+    btn5.pack(side="left",
+              pady=15,
+              padx=30)
     
     
 
