@@ -106,7 +106,6 @@ def main():
 
         janela.mainloop()
 
-
     def girar():
         global saldo
 
