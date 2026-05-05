@@ -19,7 +19,7 @@ def main():
     
     label.pack(expand=True)
 
-    def janela():
+    def janela_nova():
         def mostrar_texto():
             texto = entrada.get()
             label_resultado.config(text=texto)
@@ -57,7 +57,7 @@ def main():
     def futuro():
         desen = tk.Tk()
         desen.title("Moonox - Projeto") # Título da Janela.
-        desen.geometry("350x250") # Tamanho da Janela.
+        desen.geometry("720x400") # Tamanho da Janela.
         desen.resizable(False, False) # Redimensionar a Janela livremente.
 
         label = ttk.Label(desen,
@@ -74,23 +74,46 @@ def main():
               pady=15,
               padx=30)
 
-    def nickel():
+    def criar_jogo():
+        global slot1, slot2, slot3, resultado_label, saldo_label
 
+        janela = tk.Tk()
+        janela.title("🎰 Caça Níquel")
+        janela.geometry("350x250")
+        janela.resizable(False, False)
+
+        tk.Label(janela, text="🎰 Caça Níquel", font=("Arial", 16, "bold")).pack(pady=10)
+
+        frame_slots = tk.Frame(janela)
+        frame_slots.pack(pady=10)
+
+        slot1 = tk.Label(frame_slots, text="❓", font=("Arial", 30))
+        slot1.pack(side="left", padx=10)
+
+        slot2 = tk.Label(frame_slots, text="❓", font=("Arial", 30))
+        slot2.pack(side="left", padx=10)
+
+        slot3 = tk.Label(frame_slots, text="❓", font=("Arial", 30))
+        slot3.pack(side="left", padx=10)
+
+        resultado_label = tk.Label(janela, text="Clique para girar")
+        resultado_label.pack()
+
+        saldo_label = tk.Label(janela, text=f"Saldo: R$ {saldo:.2f}")
+        saldo_label.pack()
+
+        tk.Button(janela, text="Girar", command=girar).pack(pady=10)
+
+        janela.mainloop()
+
+
+    def girar():
         global saldo
+
         if saldo < custo_giro:
             resultado_label.config(text="Saldo insuficiente!", fg="red")
             return
-        
-        cnickel = tk.Tk()
-        cnickel.title("🎰 Caça Nickel")
-        cnickel.geometry("720x400")
-        cnickel.resizable(False, False)
 
-        titulo = tk.Label(cnickel,
-                          text="🎰 Caça Nickel",
-                          font=("Arial", 16, "bold"))
-        titulo.pack(pady=10)
-        
         saldo -= custo_giro
 
         resultado = [random.choice(simbolos) for _ in range(3)]
@@ -105,29 +128,14 @@ def main():
             resultado_label.config(text=f"🎉 JACKPOT! +R$ {premio}", fg="green")
         else:
             resultado_label.config(text="😥 Tente novamente...", fg="black")
-        
-        saldo_label.config(text=f"Saldo: R$ {saldo: .2f}")
 
-        frame_slots = tk.Frame(janela)
-        frame_slots.pack(pady=10)
-
-        slot1 = tk.Label(frame_slots,
-            text="❓",
-            font=("Arial", 30))
-        
-        slot2 = tk.Label(frame_slots,
-            text="❓",
-            font=("Arial", 30))
-        
-        slot3 = tk.Label(frame_slots,
-            text="❓",
-            font=("Arial", 30))
+        saldo_label.config(text=f"Saldo: R$ {saldo:.2f}")
 
 
 
     btn = ttk.Button(root,
         text = "Janela",
-        command = janela)
+        command = janela_nova)
     
     btn.pack(side="left",
              pady=15,
@@ -135,7 +143,7 @@ def main():
     
     btn2 = ttk.Button(root,
         text = "Nickel",
-        command = nickel)
+        command = criar_jogo)
     
     btn2.pack(side="left",
              pady=15,
