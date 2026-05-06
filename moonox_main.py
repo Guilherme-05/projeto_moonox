@@ -4,7 +4,7 @@ from tkinter import ttk
 import random
 
 simbolos = ["🎭","🎁","🎃","💎","🎲"]
-saldo = 20.0
+saldo = 100.0
 custo_giro = 2
 
 def main():
@@ -122,7 +122,7 @@ def main():
         slot3.config(text=resultado[2])
 
         if resultado[0] == resultado[1] == resultado[2]:
-            premio = 20
+            premio = 50
             saldo += premio
             resultado_label.config(text=f"🎉 JACKPOT! +R$ {premio}", fg="green")
         else:
